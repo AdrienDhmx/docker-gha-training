@@ -27,7 +27,7 @@ jobs:
       - name: Start Flask app
         run: |
           export FLASK_PORT=5000
-          python app/main.py 
+          python app/main.py &
           sleep 5
 
   test:
