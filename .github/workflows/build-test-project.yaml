@@ -14,6 +14,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Create secrets file
+        run: |
+          mkdir -p secrets
+          echo "secret_password" > secrets/db_password.txt
+
       - name: Build myapp image
         run: |
           docker build -t myapp:1 .
