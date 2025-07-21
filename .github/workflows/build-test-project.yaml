@@ -30,11 +30,7 @@ jobs:
           python app/main.py &
           sleep 5
 
-  test:
-    runs-on: ubuntu-latest
-    needs: build
-
-    steps:
       - name: Call /books endpoint
         run: |
           curl --fail http://localhost:5000/books
+

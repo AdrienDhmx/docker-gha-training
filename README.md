@@ -26,4 +26,17 @@ Finally, I started the stack with the command `docker compose up`.
 
 ## CI/CD with GitHub Actions
 
+### Build and Push Image to GitHub Container Registry
+I used the `docker/login-action` action to login to the GitHub Container Registry, then I use the `docker/build-push-action`
+to build and push the image to the registry. Finally I use `actions/attest-build-provenance` to have the url of the new image
+in the action summary.
+
+### Build and test project
+
+I set up a python environment with python version of 3.x with `actions/setup-python`, then install the app dependencies.
+I run the main.py file in the background with `&` and wait  5 seconds to make sure the server has started before testing and endpoint.
+Finally, I test the /books endpoint with curl and --fail option.
+
+## Testing and Submission
+
 
