@@ -14,18 +14,21 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Create secrets file
-        run: |
-          mkdir -p secrets
-          echo "secret_password" > secrets/db_password.txt
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
 
-      - name: Build myapp image
+      - name: Install dependencies
         run: |
-          docker build -t myapp:1 .
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
 
-      - name: Starts app with compose
+      - name: Start Flask app
         run: |
-          docker compose up
+          export FLASK_PORT=5000
+          python app/main.py 
+          sleep 5
 
   test:
     runs-on: ubuntu-latest
